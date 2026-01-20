@@ -4,6 +4,8 @@
 # Netflix GPT
 -- Create React app
 -- Configure Tailwind.
+-- Header Form
+-- Sign up Form
 
 # setup Git
 git remote add origin https://github.com/Archijain378/Netflix-gpt.git
