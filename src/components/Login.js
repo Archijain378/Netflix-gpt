@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import Header from "./Header";
+import { checkValidData } from "../utils/validate";
 
 const Login =()=>{
 
     const [isSignForm, setIsSignForm] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
     const handleToggle =()=>{
         setIsSignForm(!isSignForm);
+    }
+
+    const email = useRef(null);
+    const password = useRef(null);
+    const name = useRef(null);
+
+
+    const handleButtonClick =(e)=>{
+        e.preventDefault();
+        console.log(email.current.value)
+        console.log(password.current.value)
+        setErrorMessage(checkValidData(email.current.value, password.current.value, name.current.value))
     }
     return(
         <div className="relative"> 
@@ -16,10 +30,11 @@ const Login =()=>{
             </div>
             <form className="w-3/12 absolute p-12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black opacity-80 text-white rounded-lg">
                 <h1 className="text-3xl font-bold py-6 px-4">{isSignForm ? "sign In" : "sign up"}</h1>
-                {!isSignForm &&<input type="text" placeholder="Full Name" className="p-2 m-4 w-full bg-gray-700"/>}
-                <input type ="text" placeholder="Email address" className="p-2 m-4 w-full bg-gray-700"/>
-                <input type="password" placeholder="Password" className="p-2 m-4 w-full bg-gray-700"/>
-                <button className="bg-red-600 p-2 m-4 rounded w-full rounded-lg">{isSignForm ? "Sign In" : "sign Up"}</button>
+                {!isSignForm &&<input type="text" ref= {name} placeholder="Full Name" className="p-2 m-4 w-full bg-gray-700"/>}
+                <input type ="text" ref={email} placeholder="Email address" className="p-2 m-4 w-full bg-gray-700"/>
+                <input type="password" ref={password}placeholder="Password" className="p-2 m-4 w-full bg-gray-700"/>
+                <p className="text-red-500 font-bold mx-6">{errorMessage}</p>
+                <button className="bg-red-600 p-2 m-4 rounded w-full rounded-lg" onClick={handleButtonClick}>{isSignForm ? "Sign In" : "sign Up"}</button>
                 <p className="mx-6 cursor-pointer" onClick={handleToggle}>{isSignForm ? "New to Netflix? Sign Up now" : "Already registered? Sign In now"}</p>
             </form>
         </div>
