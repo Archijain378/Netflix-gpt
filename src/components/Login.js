@@ -9,7 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { USER_AVATAR } from "../utils/constants";
+import { BG_URL, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignForm, setIsSignForm] = useState(true);
@@ -26,7 +26,6 @@ const Login = () => {
   const handleButtonClick = (e) => {
     e.preventDefault();
     const message = checkValidData(email.current.value, password.current.value);
-    console.log(message);
     setErrorMessage(message);
 
     if (message) return;
@@ -70,7 +69,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
 
           // ...
         })
@@ -85,10 +83,7 @@ const Login = () => {
     <div className="relative">
       <Header />
       <div>
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/797df41b-1129-4496-beb3-6fc2f29c59d3/web/IN-en-20260112-TRIFECTA-perspective_004732f9-7464-4a7c-940b-4a51c4f0f73f_large.jpg"
-          alt="bg-img"
-        />
+        <img src={BG_URL} alt="bg-img" />
       </div>
       <form className="w-3/12 absolute p-12 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black opacity-80 text-white rounded-lg">
         <h1 className="text-3xl font-bold py-6 px-4">

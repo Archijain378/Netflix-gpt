@@ -9,13 +9,10 @@ const MainContainer = () => {
   if (movies === null) return;
 
   const mainMovie = movies[0];
-  console.log("Main Movie in VideoTitle:", mainMovie);
 
   const title = mainMovie.title;
-  console.log("Title in MainContainer:", title);
 
   const overView = mainMovie.overview;
-  console.log("overView in MainContainer:", overView);
 
   return (
     <div>

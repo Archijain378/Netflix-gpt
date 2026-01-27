@@ -2,7 +2,6 @@ import React from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log("posterpath", movies);
   if (!movies) return null;
   return (
     <div className="flex overflow-x-scroll p-2 ">
